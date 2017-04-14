@@ -1,6 +1,4 @@
-package com.spotify.hyperflo.modules
-
-import com.spotify.hyperflo.core.CommandLine
+package com.spotify.hyperflo.core
 
 import scala.sys.process._
 

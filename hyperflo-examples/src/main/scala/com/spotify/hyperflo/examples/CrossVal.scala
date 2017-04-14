@@ -5,7 +5,8 @@ import com.spotify.hype.model.Secret.secret
 import com.spotify.hype.model.{RunEnvironment, VolumeRequest}
 import com.spotify.hype.util.Fn
 import com.spotify.hype.{ContainerEngineCluster, Submitter}
-import com.spotify.hyperflo.modules.{GSUtilCp, LocalSplit}
+import com.spotify.hyperflo.core.GSUtilCp
+import com.spotify.hyperflo.modules.{LocalSplit, Word2vec}
 
 object CrossVal {
 
@@ -26,6 +27,11 @@ object CrossVal {
     val testSet = mount + "/test.txt"
     val localSplit = LocalSplit(localInput, trainingSet -> .8, testSet -> .2)
     submitter.runOnCluster(localSplit.run, getEnv(localSplit.docker)
+      .withMount(ssd.mountReadWrite(mount)))
+
+    val w2vOutput = "gs://hype-test/output/w2v/model.txt"
+    val word2vec = Word2vec(trainingSet, w2vOutput)
+    val token = submitter.runOnCluster(word2vec.run, getEnv(word2vec.docker)
       .withMount(ssd.mountReadWrite(mount)))
   }
 

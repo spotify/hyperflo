@@ -19,12 +19,14 @@ lazy val root: Project = Project(
   file(".")
 ).aggregate(
   core,
-  modules,
   examples
 )
 
 lazy val core : Project = project.in(file("hyperflo-core")).settings(
-  commonSettings
+  commonSettings,
+  libraryDependencies ++= Seq(
+    "org.scalanlp" %% "breeze" % "0.13"
+  )
 )
 
 lazy val examples: Project = project.in(file("hyperflo-examples")).settings(
@@ -33,28 +35,14 @@ lazy val examples: Project = project.in(file("hyperflo-examples")).settings(
     "com.spotify" % "hype-submitter" % "0.0.13-SNAPSHOT"
   )
 ).dependsOn(
-  gsutilcp,
-  localsplit
+  localsplitModule,
+  word2vecModule
 )
 
 // Modules
 // FIXME: is this a good way to handle a modules? (esp. if a lot of them)
 
-lazy val modules: Project = project.in(file("hyperflo-modules")).settings(
-  commonSettings
-  ).aggregate (
-  word2vecModule,
-  lexvecModule,
-  gsutilcp
-)
-
-lazy val gsutilcp : Project = project.in(file("hyperflo-modules/gsutilcp")).settings(
-  commonSettings
-).dependsOn(
-  core
-)
-
-lazy val localsplit : Project = project.in(file("hyperflo-modules/localsplit")).settings(
+lazy val localsplitModule : Project = project.in(file("hyperflo-modules/localsplit")).settings(
   commonSettings
 ).dependsOn(
   core
