@@ -9,12 +9,21 @@ trait CommandLine extends HypeModule[Int] {
 
   @transient private lazy val log = LoggerFactory.getLogger(classOf[CommandLine])
 
+  def handleReturnCode(rc: Int): Unit = {
+    if (rc != 0) {
+      log.error(s"`$getCmd` failed - return code $rc")
+      System.exit(rc)
+    }
+  }
+
   def getCmd: String
 
   override def run: Int = {
     val cmd = getCmd
     log.info("Executing: " + cmd)
-    cmd !
+    val rc = (cmd !)
+    handleReturnCode(rc)
+    rc
   }
 
   override def docker: String = "us.gcr.io/datawhere-test/hype-examples-base:4" // FIXME
