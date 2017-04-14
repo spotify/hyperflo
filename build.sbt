@@ -37,7 +37,8 @@ lazy val examples: Project = project.in(file("hyperflo-examples")).settings(
 ).dependsOn(
   localsplitModule,
   word2vecModule,
-  lexvecModule
+  lexvecModule,
+  evalEmbeddings
 )
 
 // Modules
@@ -56,6 +57,12 @@ lazy val word2vecModule : Project = project.in(file("hyperflo-modules/word2vev")
 )
 
 lazy val lexvecModule : Project = project.in(file("hyperflo-modules/lexvec")).settings(
+  commonSettings
+).dependsOn(
+  core
+)
+
+lazy val evalEmbeddings : Project = project.in(file("hyperflo-modules/eval-embeddings")).settings(
   commonSettings
 ).dependsOn(
   core

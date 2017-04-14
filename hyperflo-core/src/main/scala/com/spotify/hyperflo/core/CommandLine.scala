@@ -25,7 +25,4 @@ trait CommandLine extends HypeModule[Int] {
     handleReturnCode(rc)
     rc
   }
-
-  override def docker: String = "us.gcr.io/datawhere-test/hype-examples-base:4" // FIXME
-
 }

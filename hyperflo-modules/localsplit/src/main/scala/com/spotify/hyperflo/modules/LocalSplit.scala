@@ -41,6 +41,4 @@ case class LocalSplit(input: String, destinations: (String, Double)*) extends Hy
     }
     writers.foreach(_.close)
   }
-
-  override def docker: String = "us.gcr.io/datawhere-test/hype-examples-base:4" // FIXME
 }
