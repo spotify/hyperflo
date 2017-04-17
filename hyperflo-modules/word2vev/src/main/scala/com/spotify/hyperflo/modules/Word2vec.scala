@@ -2,6 +2,9 @@ package com.spotify.hyperflo.modules
 
 import com.spotify.hyperflo.core.CmdLineEmbeddingModel
 
+/**
+  * arguments: https://github.com/yonromai/word2vec/blob/master/src/word2vec.c#L672
+  */
 case class Word2vec(corpus: String,
                     gcsOutput: String,
                     args: (String, String)*) extends CmdLineEmbeddingModel {

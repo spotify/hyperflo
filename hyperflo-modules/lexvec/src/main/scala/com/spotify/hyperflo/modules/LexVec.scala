@@ -2,6 +2,7 @@ package com.spotify.hyperflo.modules
 
 import com.spotify.hyperflo.core.CmdLineEmbeddingModel
 
+// FIXME: mutli-threading appears to be broken in docker (but not locally)
 case class LexVec(corpus: String,
                   gcsOutput: String,
                   args: (String, String)*) extends CmdLineEmbeddingModel {

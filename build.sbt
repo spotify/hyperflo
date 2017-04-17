@@ -38,7 +38,8 @@ lazy val examples: Project = project.in(file("hyperflo-examples")).settings(
   localsplitModule,
   word2vecModule,
   lexvecModule,
-  evalEmbeddings
+  evalEmbeddings,
+  sciosplitModule
 )
 
 // Modules
@@ -46,6 +47,15 @@ lazy val examples: Project = project.in(file("hyperflo-examples")).settings(
 
 lazy val localsplitModule : Project = project.in(file("hyperflo-modules/localsplit")).settings(
   commonSettings
+).dependsOn(
+  core
+)
+
+lazy val sciosplitModule : Project = project.in(file("hyperflo-modules/sciosplit")).settings(
+  commonSettings,
+  libraryDependencies ++= Seq(
+    "com.spotify" %% "scio-core" % "0.3.0-beta3"
+  )
 ).dependsOn(
   core
 )

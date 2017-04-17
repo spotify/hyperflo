@@ -12,7 +12,6 @@ case class LocalSplit(input: String, destinations: (String, Double)*) extends Hy
 
   @transient private lazy val log = LoggerFactory.getLogger(classOf[LocalSplit])
 
-
   override def run: Unit = {
     val probas = destinations.map(_._2).toList
 
