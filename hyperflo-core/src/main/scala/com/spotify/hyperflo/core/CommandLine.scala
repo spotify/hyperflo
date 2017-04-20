@@ -1,11 +1,12 @@
 package com.spotify.hyperflo.core
 
+import com.spotify.hype.HFn
 import org.slf4j.LoggerFactory
 
 import scala.sys.process._
 
 
-trait CommandLine extends HypeModule[Int] {
+trait CommandLine extends HFn[Int] {
 
   @transient private lazy val log = LoggerFactory.getLogger(classOf[CommandLine])
 
@@ -25,4 +26,6 @@ trait CommandLine extends HypeModule[Int] {
     handleReturnCode(rc)
     rc
   }
+
+  override def image: String = "us.gcr.io/datawhere-test/hype-examples-base:4"
 }

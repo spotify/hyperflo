@@ -2,13 +2,13 @@ package com.spotify.hyperflo.modules
 
 import java.io.{File, PrintWriter}
 
-import com.spotify.hyperflo.core.HypeModule
+import com.spotify.hype.HFn
 import org.slf4j.LoggerFactory
 
 import scala.io.Source
 import scala.util.Random
 
-case class LocalSplit(input: String, destinations: (String, Double)*) extends HypeModule[Unit] {
+case class LocalSplit(input: String, destinations: (String, Double)*) extends HFn[Unit] {
 
   @transient private lazy val log = LoggerFactory.getLogger(classOf[LocalSplit])
 

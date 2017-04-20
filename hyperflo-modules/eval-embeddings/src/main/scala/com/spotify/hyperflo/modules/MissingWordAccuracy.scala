@@ -4,7 +4,8 @@ import breeze.linalg.functions.cosineDistance
 import breeze.linalg.{DenseVector, sum}
 import breeze.stats._
 import breeze.stats.distributions.{Multinomial, RandBasis}
-import com.spotify.hyperflo.core.{CmdLineEmbeddingModel, CmdLineEmbeddingModelToken, HypeModule}
+import com.spotify.hype.HFn
+import com.spotify.hyperflo.core.{CmdLineEmbeddingModel, CmdLineEmbeddingModelToken}
 
 import scala.collection.mutable
 import scala.io.Source
@@ -20,7 +21,7 @@ object MissingWordAccuracy {
 
 case class MissingWordAccuracy(testDataset: String,
                                modelToken: CmdLineEmbeddingModelToken
-                              ) extends HypeModule[Seq[(String, String)]] {
+                              ) extends HFn[Seq[(String, String)]] {
 
   override def run: Seq[(String, String)] = {
 
@@ -72,4 +73,6 @@ case class MissingWordAccuracy(testDataset: String,
       "median" -> median(d).toString
     )
   }
+
+  override def image: String = "us.gcr.io/datawhere-test/hype-examples-base:4"
 }

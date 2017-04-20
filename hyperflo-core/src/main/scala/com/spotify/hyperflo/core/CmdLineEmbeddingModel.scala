@@ -3,6 +3,7 @@ package com.spotify.hyperflo.core
 import java.nio.file.{Files, Paths}
 
 import breeze.linalg.DenseVector
+import com.spotify.hype.HFn
 import org.slf4j.LoggerFactory
 
 import scala.io.Source
@@ -30,7 +31,7 @@ object CmdLineEmbeddingModel {
   }
 }
 
-trait CmdLineEmbeddingModel extends HypeModule[CmdLineEmbeddingModelToken] {
+trait CmdLineEmbeddingModel extends HFn[CmdLineEmbeddingModelToken] {
 
   @transient private lazy val log = LoggerFactory.getLogger(classOf[CommandLine])
 

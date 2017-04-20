@@ -3,14 +3,14 @@ package com.spotify.hyperflo.modules
 import java.nio.charset.StandardCharsets
 
 import com.google.common.hash.Hashing
-import com.spotify.hyperflo.core.HypeModule
+import com.spotify.hype.HFn
 import com.spotify.scio.ContextAndArgs
 import org.slf4j.LoggerFactory
 
 
 case class ScioSplit(scioArguments: Array[String],
                      input: String,
-                     destinations: (String, Double)*) extends HypeModule[Unit] {
+                     destinations: (String, Double)*) extends HFn[Unit] {
 
   @transient private lazy val log = LoggerFactory.getLogger(classOf[ScioSplit])
 

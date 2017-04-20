@@ -12,5 +12,5 @@ case class LexVec(corpus: String,
 
   override def getGcsOutput: String = gcsOutput
 
-  override def docker: String = "us.gcr.io/datawhere-test/hype-lexvec:1"
+  override def image = "us.gcr.io/datawhere-test/hype-lexvec:1"
 }

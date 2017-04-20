@@ -2,6 +2,7 @@ import sbt.Keys._
 
 val commonLibraryDependencies = Seq(
   "org.slf4j" % "slf4j-simple" % "1.7.5",
+  "com.spotify" %% "hype" % "0.0.16",
   // Test
   "org.scalatest" %% "scalatest" % "3.0.1"
 )
@@ -30,10 +31,7 @@ lazy val core : Project = project.in(file("hyperflo-core")).settings(
 )
 
 lazy val examples: Project = project.in(file("hyperflo-examples")).settings(
-  commonSettings,
-  libraryDependencies ++= commonLibraryDependencies ++ Seq(
-    "com.spotify" % "hype-submitter" % "0.0.13-SNAPSHOT"
-  )
+  commonSettings
 ).dependsOn(
   localsplitModule,
   word2vecModule,

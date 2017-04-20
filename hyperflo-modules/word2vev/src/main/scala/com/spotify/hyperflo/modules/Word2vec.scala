@@ -15,5 +15,5 @@ case class Word2vec(corpus: String,
 
   override def getGcsOutput: String = gcsOutput
 
-  override def docker: String = "us.gcr.io/datawhere-test/hype-word2vec:9"
+  override def image = "us.gcr.io/datawhere-test/hype-word2vec:9"
 }
