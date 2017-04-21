@@ -36,7 +36,7 @@ object CrossVal {
     val testSet = baseScioData + "/test"
     log.info("Running dataset split...")
     val scioSplit = ScioSplit(scioArguments, gcsInput, trainingSet -> .9, testSet -> .1)
-//    submitter.submit(scioSplit, env)
+    submitter.submit(scioSplit, env)
 
     // DL training data locally
     log.info("Downloading training data locally...")
@@ -75,10 +75,6 @@ object CrossVal {
 
   def main(args: Array[String]): Unit = {
     val submitter = GkeSubmitter(project, "us-east1-d", "hype-ml-test", "gs://hype-test")
-    try {
-      run(submitter)
-    } finally {
-      submitter.close()
-    }
+    run(submitter)
   }
 }
